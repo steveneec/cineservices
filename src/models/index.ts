@@ -1,6 +1,4 @@
 import { Sequelize } from "sequelize";
-import PeliculaModel from "./pelicula.model";
-import SnackModel from "./snack.model";
 
 const sequelize = new Sequelize({
   dialect: "mysql",
@@ -11,8 +9,16 @@ const sequelize = new Sequelize({
   port: 3306,
 });
 
-//Inicializar modelos
-PeliculaModel.init(sequelize);
-SnackModel.init(sequelize);
+(async function initDB() {
+  try {
+    await sequelize.sync({ force: true });
+    console.log("DB has been connected!");
+  } catch (error) {
+    console.log(error);
+  }
+})();
+
+const Pelicula = require("./pelicula.model")(sequelize);
+const Snack = require("./snack.model")(sequelize);
 
 export default sequelize;

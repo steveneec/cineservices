@@ -9,11 +9,4 @@ const port = 3000; //Puerto
 //Usar las rutas
 app.use("/peliculas", rutasPeliculas); //ruta general
 
-//Inicializar base de datos
-try {
-  sequelize.sync();
-} catch (error) {
-  console.log(error);
-}
-
 app.listen(port, () => {}); //Incializar server

@@ -1,15 +1,15 @@
 import express from "express";
 import sequelize from "../models";
-
 const router = express.Router();
 
 //Gets
 router.get("", async (req, res) => {
   try {
     //@ts-ignore
-    const movie = await sequelize.models.Pelicula.findAndCountAll();
+    const movie = await sequelize.models.Pelicula.findAll();
     res.json(movie);
   } catch (error) {
+    console.log(error);
     res.status(500).send({ message: "error" });
   }
 });
@@ -29,5 +29,3 @@ router.post("", async (req, res) => {
 });
 
 export default router;
-
-export const a = { id: "", b: "" };

@@ -1,22 +1,17 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { Sequelize, DataTypes } from "sequelize";
 
-const SnackModel: { init: Function | any } = { init: () => {} }; //El objeto por defecto a exportar
-
-function init(sequelize: Sequelize) {
-  sequelize.define(
+module.exports = function (sequelize: Sequelize) {
+  return sequelize.define(
     "Snack",
     {
       id: {
         primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      name: {
         type: DataTypes.STRING,
       },
-      //todos los demas propiedades del modelo
-      // nombre: {type: DataTypes._...}
     },
     { timestamps: false }
   );
-}
-
-SnackModel.init = init;
-
-export default SnackModel;
+};

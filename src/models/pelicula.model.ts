@@ -1,9 +1,7 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { Sequelize, DataTypes } from "sequelize";
 
-const PeliculaModel: { init: Function } = { init: () => {} };
-
-function init(sequelize: Sequelize) {
-  sequelize.define(
+module.exports = function (sequelize: Sequelize) {
+  return sequelize.define(
     "Pelicula",
     {
       id: {
@@ -19,8 +17,4 @@ function init(sequelize: Sequelize) {
     },
     { timestamps: false }
   );
-}
-
-PeliculaModel.init = init;
-
-export default PeliculaModel;
+};
